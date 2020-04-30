@@ -1,0 +1,61 @@
+real ventas,comis,ihss,tp
+cadena[30] nombre
+caracter zona
+
+funcion seguro(real comis ): real
+   real Vihss
+   inicio
+	si comis >2400 entonces
+		vihss<- 84
+	sino
+		vihss<-0.035 * comis
+	fin si
+   retorne vihss
+fin
+
+funcion comision(caracter zona,real ventas) : real
+   real vcomis
+   inicio
+	caso zona
+	"A" : vcomis<-0.05*ventas
+	"B" : vcomis<-0.06*ventas
+	"C" : vcomis<-0.09*ventas
+	Fin Caso
+   retorne vcomis
+fin
+
+procedimiento Ingreso(cadena[30] nombre,var caracter zona , var real ventas)
+  inicio
+	escriba "Ingresar el nombre "
+	lea nombre
+	escriba "Ventas mensuales "
+	lea ventas
+	
+	repita
+		escriba "Zona A,B,C "
+		lea zona
+	hasta (zona ='B') o (zona ='C') o (zona='A')
+fin
+
+procedimiento calculos(caracter zona,real ventas, var real comis, var real ihss ,var real tp)
+   inicio
+	comis<-comision(zona,ventas)
+	ihss<-seguro(comis)
+	tp<-comis-ihss
+fin
+
+procedimiento presentar(real comis , real ihss , real tp)
+   inicio
+	escriba " Comisión ",comis
+	llamar Nueva_linea
+	escriba " Seguro Social ", ihss
+	llamar Nueva_linea
+	escriba " Total a pagar ", tp
+	llamar Nueva_linea
+fin
+
+Inicio
+	llamar Ingreso(nombre,zona,ventas)
+	llamar calculos(zona,ventas,comis,ihss,tp)
+	llamar presentar(comis,ihss,tp)
+fin

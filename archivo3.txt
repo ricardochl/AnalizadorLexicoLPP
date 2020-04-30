@@ -1,0 +1,47 @@
+registro reg_alumno
+cadena[30] nombre
+real na,ne,nf
+cadena[10] obs
+fin registro
+/* delcaración de variables*/
+reg_alumno Alum
+entero I
+funcion observacion (real nota): cadena[10]
+cadena[10] vobs
+inicio
+si nota>= 60 entonces
+vobs<-"aprobado"
+sino
+vobs<-"reprobado"
+fin si
+retorne vobs
+fin
+procedimiento ingreso( var reg_alumno alum )
+inicio
+escriba " Ingresar el nombre "
+lea alum.nombre
+escriba "Ingresar la nota examen "
+lea alum.ne
+escriba "Ingresar la nota acumulada "
+lea alum.na
+fin
+procedimiento calculo(var reg_alumno alum)
+inicio
+alum.nf<-alum.na + alum.ne
+alum.obs<-observacion(alum.nf)
+fin
+
+procedimiento presentar(reg_alumno alum)
+inicio
+Escriba "Nota Final ",alum.nf
+llamar nueva_linea
+escriba "Observación ",alum.obs
+llamar nueva_linea
+fin
+inicio
+para I<- 1 hasta 5 haga
+llamar ingreso(alum)
+llamar calculo(alum)
+llamar presentar(alum)
+fin para
+fin
